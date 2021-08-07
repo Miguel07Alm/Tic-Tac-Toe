@@ -54,8 +54,8 @@ class Board{
           bool winner(int team){
                
                for (int i = 0; i < size/3; i++){
-                    int r_cond = 0, c_cond = 0, d_cond = 0;
                     for (int j = 0; j < size/3; j++){
+                         int r_cond = 0, c_cond = 0, d_cond = 0;
                          if(coords[i][j] == team){
                               for (int col = 0; col < size / 3; col++){
                                    if(coords[i][col] == coords[i][j])
@@ -79,9 +79,11 @@ class Board{
                                                   d_cond += 1;
                                         }
                                    }
+                                   
                               } 
                               if(r_cond == 3 || c_cond == 3 || d_cond == 3)
                                    return true;
+                              
                          }
                     }
                }
@@ -134,8 +136,11 @@ int main(){
           string coord;
           cout << "You are '" + teams[team] + "', write the coord(Ex. 12): ";
           cin >> coord;
-          if(!board.coord_in_board(coord)){
+          if (stoi(coord) > 33)
+               cout << "The coord isn't valid, choose again!" << endl;
+          else if(!board.coord_in_board(coord)){
                board.set_coords(coord, team);
+               clear();
                board.print_board();
                if(board.winner(team)){
                     cout << "TIC TAC TOE! The '" + teams[team] + "' team has won." << endl;
@@ -147,9 +152,7 @@ int main(){
           else
                cout << "The coord is chose, choose again! " << endl;
           
-          
-          
-     }
+          }
      char str;
      cout << "The game has finished, 'p' for playing again: ";
      cin >> str;
