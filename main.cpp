@@ -136,7 +136,7 @@ int main(){
           string coord;
           cout << "You are '" + teams[team] + "', write the coord(Ex. 12): ";
           cin >> coord;
-          if (stoi(coord) > 33)
+          if (stoi(coord) > 33 || stoi(coord) <= 0)
                cout << "The coord isn't valid, choose again!" << endl;
           else if(!board.coord_in_board(coord)){
                board.set_coords(coord, team);
